@@ -34,6 +34,9 @@ public class Operators {
         System.out.println(e);
         System.out.println("\n");
 
+        int $name = 10;
+        System.out.println($name+"\n");
+
         // 증감 연산자
         a = 1;
         System.out.println("a=" + a);   // a=1
