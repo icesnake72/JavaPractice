@@ -1,20 +1,21 @@
 package Chapter_04;
 
-public class Sorter {
-    private short[] arr = new short[5];
+public abstract class Sorter {
+    protected short[] arr = new short[5];
 
     public Sorter() {
-        for(int i=0; i<5; i++) {
-            int n = (int)(Math.random() * 1000);
-            n %= 10;
-
-            arr[i] = (short)n;
-            System.out.println("arr[" + i + "] = " + n);
-        }
+        this.GenerateRandom();
+//        for(int i=0; i<5; i++) {
+//            int n = (int)(Math.random() * 1000);
+//            n %= 10;
+//
+//            arr[i] = (short)n;
+//            System.out.println("arr[" + i + "] = " + n);
+//        }
     }
 
     public void GenerateRandom() {
-        System.out.println("랜덤!!!");
+        System.out.println("랜덤!!! 소팅 준비 완료!");
         for(int i=0; i<5; i++) {
             int n = (int)(Math.random() * 1000);
             n %= 10;
@@ -24,6 +25,16 @@ public class Sorter {
         }
     }
 
+    protected void swap(int a, int b) {
+        short tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+    }
+
+    public abstract void DoSort();
+}
+
+class SeqSorter extends Sorter {
     public void DoSort() {
         for(int i=0; i<4; i++) {
             for (int j = i + 1; j < 5; j++) {
@@ -32,13 +43,15 @@ public class Sorter {
             }
         }
 
-        System.out.println("소트 완료!!!");
+        System.out.println("시퀀셜 소트 완료!!!");
         for(int i=0; i<5; i++) {
             System.out.println("arr[" + i + "] = " + arr[i]);
         }
     }
+}
 
-    public void DoBubbleSort() {
+class BubbleSorter extends Sorter {
+    public void DoSort() {
         for(int i=4; i>0; i--) {
             for(int j=0; j<i; j++) {
                 if ( arr[j]>arr[j+1])
@@ -50,11 +63,5 @@ public class Sorter {
         for(int i=0; i<5; i++) {
             System.out.println("arr[" + i + "] = " + arr[i]);
         }
-    }
-
-    private void swap(int a, int b) {
-        short tmp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = tmp;
     }
 }
