@@ -21,5 +21,6 @@ public class DataTypes {
         System.out.println(isReal);
 
         final float PI = 3.14f;
+        // PI = 5.0f;
     }
 }
