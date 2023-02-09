@@ -109,25 +109,32 @@ class LottoCardEx extends LottoCard implements LottoCardInterface {
         System.out.println("나의 번호 : " + numbers);
     }
 
-    public void InputOneNumber() {
+    public void InputOneNumber(@NotNull Scanner sc) {
         System.out.println("InputOneNumber");
         byte num = 0;
-        Scanner sc = new Scanner(System.in);
+
         do {
+
             if (sc.hasNext()) {
-                System.out.println("1에서부터 45의 수를 입력하세요");
-                num = Byte.parseByte(sc.next());
+            System.out.println("1에서부터 45의 수를 입력하세요");
+            num = sc.nextByte();
+            // num = Byte.parseByte(sc.next());
             }
+
         } while (num <= 0 || num > 45 );
 
         this.SetNumber(num);
-        sc.close();
+
     }
 
     public void InputSixNumbers() {
+        Scanner sc = new Scanner(System.in);
         while( numbers.size() < WinLotto.NUM_COUNT ) {
-            InputOneNumber();
+
+            InputOneNumber(sc);
+
         }
+        sc.close();
     }
 
     public void Clear() {
